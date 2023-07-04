@@ -4,10 +4,21 @@ import { ContactDetailsProps, AddressProps, GpProps, PracticeProps, MedicationPr
 
 const PatientContainer = () => {
 
-    const [patients, setPatients] = useState([]);
+    const [patients, setPatients] = useState<PatientProps[]>([]);
 
     useEffect(() => {
         const request = new ApiRequest();
         const patientPromise = request.get('/patients')
-    })
+        
+        patientPromise
+            .then((data) => {
+                setPatients(data as PatientProps[]);
+            });
+    },[]);
+
+    return (
+        <>
+        
+        </>
+    )
 }
