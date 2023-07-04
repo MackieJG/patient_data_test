@@ -8,7 +8,7 @@ interface IRequest {
 class ApiRequest implements IRequest {
     async get<T>(url: string): Promise<T> {
         const response = await fetch(url);
-        if (response.ok) {
+        if (!response.ok) {
             throw new Error(`GET request failed with status ${response.status}`);
         }
         return response.json() as Promise<T>;

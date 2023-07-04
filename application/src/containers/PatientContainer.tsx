@@ -1,39 +1,24 @@
 import React, { useState, useEffect } from "react";
 import ApiRequest from "../helpers/request";
+import { ContactDetailsProps, AddressProps, GpProps, PracticeProps, MedicationProps, PatientProps } from "../interfaces/patient-interfaces";
 
-export interface PatientProps {
-    id: string;
-    title: string;
-    firstName: string;
-    lastName: string;
-    avatar: string;
-    dob: string;
-    contactDetails: {
-        telephone: string;
-        email: string;
-    };
-    address: {
-        street: string;
-        postcode: string;
-        city: string;
-        county: string;
-    };
-    gp: {
-        title: string;
-        firstName: string;
-        practice: {
-            name: string;
-            address: {
-                street: string;
-                postcode: string;
-                city: string;
-                county: string;
-            };
-        };
-    };
-    medication: {
-        medication: string;
-        endDate: string;
-        startDate: string;
-    }[];
+const PatientContainer = () => {
+
+    const [patients, setPatients] = useState<PatientProps[]>([]);
+
+    useEffect(() => {
+        const request = new ApiRequest();
+        const patientPromise = request.get('/patients')
+        
+        patientPromise
+            .then((data) => {
+                setPatients(data as PatientProps[]);
+            });
+    },[]);
+
+    return (
+        <>
+        
+        </>
+    )
 }
