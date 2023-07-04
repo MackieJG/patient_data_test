@@ -40,4 +40,6 @@ export interface PatientProps {
     address: AddressProps;
     gp: GpProps;
     medication: MedicationProps;
+
+    
 }
